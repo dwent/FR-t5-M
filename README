@@ -1,0 +1,102 @@
+FR-t5-M : a protein structure prediction program, integrated FR-t5 with MEFTop
+
+Free for academic use only. 
+For comercial use, please contact Prof. Taijiao Jiang.
+
+All rights reserved.
+
+
+The FR-t5-M has been tested on Debian and Red Hat Linux (32 bit). 
+
+#######################################################
+
+Installation: 
+
+(0) Before installation, please make sure the following
+    softwares or databases are installed properly.
+	1. Modeller;
+	2. NR Database (or) u90 Database;
+	3. FR-t5_data;
+	4. MEFTop_Model and Fea37_parameter;
+	5. NNCon
+
+    Modeller could be download from the website:
+	http://salilab.org/modeller/download_installation.html
+
+    U90 Database, which is designed by our laboratory, can
+    be downloaded at:
+	http://jianglab.ibp.ac.cn/lims/FRt5M/FRt5M.html
+	
+	FR-t5_data is the structure library for FR-t5 and can be download at:
+	https://www.synapse.org/#!Synapse:syn10155874
+	
+	MEFTop_Model and Fea37_parameter are parameter libraries for MEFTop and can be download at:
+	https://www.synapse.org/#!Synapse:syn10155869
+	https://www.synapse.org/#!Synapse:syn10155872
+	
+	NNCon is the contact map predictor and can be download at:
+	http://sysbio.rnet.missouri.edu/multicom_toolbox/tools.html#license
+
+(1) Uncompress the tar.gz file
+	tar -zvxf FR-t5-M.tar.gz
+
+(2) Change work path to the package, and open configure.sh
+	cd FR-t5-M/
+	cp FR-t5_data/data/* FR-t5-M/FR-t5/data/*
+	cp MEFTop_Model/Model/* FR-t5-M/MEFTop/Model/*
+	cp Fea37_parameter/parameter/* FR-t5-M/MEFTop/parameter/*
+
+(3) Set $Modeller_Path to the directory of Modeller;
+    Set $NR_Database or $U90_Database or both of them;
+
+(4) Save the file. 
+
+(5) Run configure.sh to configure it. After that, this 
+    package can be moved to anywhere.
+	./configure.sh
+    
+
+(6) run assembly.sh to start work, or use the jar file:
+	java -jar FR-t5-M.jar
+
+#######################################################
+
+How to use:
+
+(1) Run the jar file.
+
+    When running the java program, you could submit as much as 
+    5 sequences at a time, which can be loaded from your local 
+    disk or pasted from the clipboard. It's OK to edit the 
+    textbox directly.
+ 
+    To predict protein structures, three directories will be 
+    established in the output path:
+	1. Input/	Your could find you sequences there.
+	2. Work/	Main works are done in this directory.
+	3. Output/	It's the place to store the selected 
+                        protein structures.
+
+    The standard output and standard error message are redirected
+    to $ID.stdout and $ID.stderr file, respectively ($ID is your
+    work ID).
+
+(2) Run the shell script 'assembly.sh'.
+
+    For example, if you want to predict the structure of "T0684.fasta",
+    and it's in "~/Sequence/", you may type the command like that:
+
+	./assembly.sh -f ~/Sequence/T0684.fasta -o ~/Result
+
+    In this command, "~/Result" is the place for output. If 
+    "-f" option changed to "-d", the scipt will find all the 
+    fasta files in the path specified by the argument after 
+    "-d", and predict their structures:
+
+	./assembly.sh -d ~/Sequence/ -o ~/Result
+
+    More options can be found if "./assembly.sh" is typed.
+    
+(3) UpdateLib.tar.gz could be used to update the library folder FR-t5/data
+
+#######################################################

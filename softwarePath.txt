@@ -1,0 +1,6 @@
+Modeller
+	/tjjiang/jinxiaoyang/Software/modeller9.11
+nr database
+	/tjjiang/daiwentao/Database/nr
+u90 database
+	/tjjiang/miaozhichao/DATABASE/u90
